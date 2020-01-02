@@ -30,7 +30,7 @@ flock -n 9 || exit
 
 # Scan
 clamscan -i -r \
-    --exclude-dir= "/var/lib/clamav/*" \
-    --exclude-dir "/usr/local/maldetect/*" \
-    --exclude-dir "/usr/NX/lib/perl/*" \
+    --exclude-dir="/var/lib/clamav/*" \
+    --exclude-dir="/usr/local/maldetect/*" \
+    --exclude-dir="/usr/NX/lib/perl/*" \
     "$dest" "$args"
