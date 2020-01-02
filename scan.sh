@@ -30,8 +30,8 @@ flock -n 9 || exit
 
 # Scan
 clamscan -i -r \
-    --exclude-dir="/var/lib/clamav/*" \
-    --exclude-dir="/usr/local/maldetect/*" \
-    --exclude-dir="/usr/NX/lib/perl/*" \
+    --exclude-dir="/var/lib/clamav/" \
+    --exclude-dir="/usr/local/maldetect/" \
+    --exclude-dir="/usr/NX/lib/perl/" \
     --exclude="/usr/src/linux-headers-4.15.0-*-generic/arch/x86/purgatory/kexec-purgatory.c"
     "$dest" "$args"
