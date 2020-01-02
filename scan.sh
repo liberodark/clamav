@@ -21,6 +21,7 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 dest="/"
 lock="/tmp/clamav-scan.lock"
 args=""
+mail="| grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com"
 
 # Update ClamAV Def
 freshclam
@@ -30,8 +31,8 @@ flock -n 9 || exit
 
 # Scan
 clamscan -i -r \
-    --exclude-dir="/var/lib/clamav/" \
-    --exclude-dir="/usr/local/maldetect/" \
-    --exclude-dir="/usr/NX/lib/perl/" \
-    --exclude="/usr/src/linux-headers-4.15.0-*-generic/arch/x86/purgatory/kexec-purgatory.c" \
+    --exclude="/var/lib/clamav/" \
+    --exclude="/usr/local/maldetect/" \
+    --exclude="/usr/NX/lib/perl/" \
+    --exclude="/usr/src/linux-headers-*-*-generic/arch/x86/purgatory/" \
     "$dest" "$args"
