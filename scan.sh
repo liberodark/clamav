@@ -24,11 +24,12 @@ args=""
 #mail=$(| grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com)
 date=$(date +%Y.%m.%d_%H-%M-%S)
 
-# Update ClamAV Def
-freshclam
-
 # Create log folder
 mkdir -p /var/log/clamav
+chown -R clamav: /var/log/clamav
+
+# Update ClamAV Def
+freshclam
 
 exec 9>"${lock}"
 flock -n 9 || exit
