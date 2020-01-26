@@ -30,6 +30,11 @@ groupadd clamav
 useradd -g clamav -s /bin/false -c "Clam Antivirus" clamav
 chown -R clamav: /var/log/clamav
 
+# SELinux
+if [ -e /usr/sbin/getenforce ]; then
+setsebool -P antivirus_can_scan_system 1
+fi
+
 # Kill Update
 pkill freshclam
 rm -f /var/log/clamav/freshclam.log
