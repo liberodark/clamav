@@ -24,10 +24,14 @@ args=""
 #mail=$(| grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com)
 date=$(date +%Y.%m.%d_%H-%M-%S)
 
-# Create log folder
-mkdir -p /var/log/clamav
+# Check user
+if [ `id -u pc 2>/dev/null || echo -1` -ge 0 ]; then
 groupadd clamav
 useradd -g clamav -s /bin/false -c "Clam Antivirus" clamav
+fi
+
+# Create log folder
+mkdir -p /var/log/clamav
 chown -R clamav: /var/log/clamav
 
 # SELinux
