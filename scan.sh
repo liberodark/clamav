@@ -26,6 +26,7 @@ date=$(date +%Y.%m.%d_%H-%M-%S)
 
 # Create log folder
 mkdir -p /var/log/clamav
+adduser clamav
 chown -R clamav: /var/log/clamav
 
 # Kill Update
