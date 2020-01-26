@@ -28,8 +28,12 @@ date=$(date +%Y.%m.%d_%H-%M-%S)
 mkdir -p /var/log/clamav
 chown -R clamav: /var/log/clamav
 
+# Kill Update
+pkill freshclam
+rm -f /var/log/clamav/freshclam.log
+
 # Update ClamAV Def
-freshclam
+freshclam -u clamav
 
 exec 9>"${lock}"
 flock -n 9 || exit
