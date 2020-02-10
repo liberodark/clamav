@@ -20,7 +20,7 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 dest="/"
 lock="/tmp/clamav-scan.lock"
-args="-i"
+#args=""
 #mail=$(| grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com)
 date=$(date +%Y.%m.%d_%H-%M-%S)
 
@@ -53,4 +53,4 @@ flock -n 9 || exit
 clamscan -i -r \
     --log="/var/log/clamav/scan-"$date".log" \
     --exclude="/var/lib/clamav/" \
-    "$dest" "$args"
+    "$dest"
