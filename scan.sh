@@ -18,7 +18,7 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 # RETRIEVE ARGUMENTS FROM THE MANIFEST AND VAR
 #=================================================
 
-dest="/home/pc/Documents/Scan_Virus/"
+dest="/"
 tmp_folder=$(mktemp -d -t virus-XXXXXXXXXX)
 lock="/tmp/clamav-scan.lock"
 #mail=$(tail /var/log/clamav/scan-"$date".log | grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com)
@@ -30,7 +30,7 @@ groupadd clamav
 useradd -g clamav -s /bin/false -c "Clam Antivirus" clamav
 fi
 
-# Check services
+# Check service
 if [ -e /usr/lib/systemd/system/clamav-daemon.service ]; then
 systemctl restart clamav-daemon
 fi
