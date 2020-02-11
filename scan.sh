@@ -62,5 +62,5 @@ clamdscan -i --fdpass \
 
 # Virus
 chmod -R 400 "$tmp_folder"
-chown -R clamav "$tmp_folder"
+chown -R clamav: "$tmp_folder"
 echo "Infected files is in $tmp_folder"
