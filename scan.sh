@@ -59,7 +59,6 @@ clamdscan -i --fdpass \
     --log="/var/log/clamav/scan-"$date".log" \
     "$dest" --move="$tmp_folder"
 
-
 # Virus
 chmod -R 400 "$tmp_folder"
 chown -R clamav: "$tmp_folder"
