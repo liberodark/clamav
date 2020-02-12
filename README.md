@@ -5,7 +5,7 @@ wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x sc
 ```
 
 
-How to Work : 
+# How to Work : 
 
 For Email need to install :
 
