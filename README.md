@@ -9,7 +9,14 @@ wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x sc
 
 For Email need to install :
 
+Manjaro / Arch Linux
 `sudo pacman -S msmtp`
+
+Ubuntu / Debian
+`sudo apt install msmtp`
+
+Fedora / Centos 8
+`sudo dnf install msmtp`
 
 Create config file :
 
