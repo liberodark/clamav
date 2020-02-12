@@ -4,7 +4,7 @@
 # Author: liberodark
 # License: GNU GPLv3
 
-version="0.1.9"
+version="0.2.0"
 
 echo "Welcome on ClamAV Scan Script $version"
 
@@ -21,8 +21,11 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 dest="/"
 tmp_folder=$(mktemp -d -t virus-XXXXXXXXXX)
 lock="/tmp/clamav-scan.lock"
-#mail=$(tail /var/log/clamav/scan-"$date".log | grep "Infected files" | grep -v "Infected files: 0$" | ifne mail -s clamav_log_`hostname` support@example.com)
+mail_adress="myemail@gmail.com"
+account="gmail"
+mail=$(cat /var/log/clamav/scan-"$date".log | msmtp -a "$account" "$mail_adress")
 date=$(date +%Y.%m.%d_%H-%M-%S)
+virus=$(tail /var/log/clamav/scan-"$date".log|grep Infected|cut -d" " -f3);
 
 # Check user
 if [ "$(id -u clamav 2>/dev/null || echo -1)" -ge 0 ]; then
@@ -66,3 +69,9 @@ clamdscan -i --fdpass \
 chmod -R 400 "$tmp_folder"
 chown -R clamav: "$tmp_folder"
 echo "Infected files is in $tmp_folder"
+
+# Send Mail
+if [ "$virus" -ne "0" ];then 
+  echo "Send Email"
+  "$mail"
+fi 
