@@ -4,7 +4,7 @@
 # Author: liberodark
 # License: GNU GPLv3
 
-version="0.2.0"
+version="0.2.1"
 
 echo "Welcome on ClamAV Scan Script $version"
 
@@ -23,9 +23,7 @@ tmp_folder=$(mktemp -d -t virus-XXXXXXXXXX)
 lock="/tmp/clamav-scan.lock"
 mail_adress="myemail@gmail.com"
 account="gmail"
-mail=$(cat /var/log/clamav/scan-"$date".log | msmtp -a "$account" "$mail_adress")
 date=$(date +%Y.%m.%d_%H-%M-%S)
-virus=$(tail /var/log/clamav/scan-"$date".log|grep Infected|cut -d" " -f3);
 
 # Check user
 if [ "$(id -u clamav 2>/dev/null || echo -1)" -ge 0 ]; then
@@ -65,13 +63,14 @@ clamdscan -i --fdpass \
     --log="/var/log/clamav/scan-""$date"".log" \
     "$dest" --move="$tmp_folder"
 
-# Virus
-chmod -R 400 "$tmp_folder"
-chown -R clamav: "$tmp_folder"
-echo "Infected files is in $tmp_folder"
+# Check & Send Mail
+mail=$(cat /var/log/clamav/scan-"$date".log | msmtp -a "$account" "$mail_adress")
+virus=$(tail /var/log/clamav/scan-"$date".log|grep Infected|cut -d" " -f3)
 
-# Send Mail
-if [ "$virus" -ne "0" ];then 
+if [ "$virus" -ne "0" ];then
+  chmod -R 400 "$tmp_folder"
+  chown -R clamav: "$tmp_folder"
+  echo "Infected files is in $tmp_folder"
   echo "Send Email"
   "$mail"
 fi 
