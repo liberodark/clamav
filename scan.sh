@@ -64,13 +64,12 @@ clamdscan -i --fdpass \
     "$dest" --move="$tmp_folder"
 
 # Check & Send Mail
-mail=$(cat /var/log/clamav/scan-"$date".log | msmtp -a "$account" "$mail_adress")
-virus=$(tail /var/log/clamav/scan-"$date".log|grep Infected|cut -d" " -f3)
+virus=$(tail /var/log/clamav/scan-"$date".log | grep Infected|cut -d" " -f3);
 
 if [ "$virus" -ne "0" ];then
   chmod -R 400 "$tmp_folder"
   chown -R clamav: "$tmp_folder"
   echo "Infected files is in $tmp_folder"
   echo "Send Email"
-  "$mail"
+  cat /var/log/clamav/scan-"$date".log | msmtp -a "$account" "$mail_adress"
 fi 
