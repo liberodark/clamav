@@ -9,6 +9,17 @@ wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x sc
 
 # How to Work : 
 
+For Anti Virus need to install :
+
+Manjaro / Arch Linux
+`sudo pacman -S clamav`
+
+Ubuntu / Debian
+`sudo apt install clamav-daemon`
+
+Fedora / Centos 8
+`sudo dnf install clamav`
+
 For Email need to install :
 
 Manjaro / Arch Linux
