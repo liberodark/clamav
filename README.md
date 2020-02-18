@@ -9,7 +9,7 @@ wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x sc
 
 # How to Work : 
 
-For Anti Virus need to install :
+### For Anti Virus need to install :
 
 Manjaro / Arch Linux
 `sudo pacman -S clamav`
@@ -20,7 +20,7 @@ Ubuntu / Debian
 Fedora / Centos 8
 `sudo dnf install clamav`
 
-For Email need to install :
+### For Email need to install :
 
 Manjaro / Arch Linux
 `sudo pacman -S msmtp`
@@ -31,11 +31,11 @@ Ubuntu / Debian
 Fedora / Centos 8
 `sudo dnf install msmtp`
 
-Create config file :
+### Create config file :
 
 `nano ~/.msmtprc`
 
-Config file exemple :
+### Config file exemple :
 
 ```
 account lilo
@@ -50,6 +50,6 @@ user my_email
 password my_password
 ```
 
-Secure config file :
+### Secure config file :
 
 `chmod 600 ~/.msmtprc`
