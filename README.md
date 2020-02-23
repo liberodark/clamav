@@ -77,8 +77,11 @@ systemctl start clamav-unofficial-sigs.service
 
 `pacman -S ufw`
 
-`ufw allow 22/tcp && ufw allow 9091/tcp`
-
+```
+ufw default deny
+ufw default allow outgoing
+ufw allow 22/tcp && ufw allow 9091/tcp
+```
 
 ### Install transmission :
 
