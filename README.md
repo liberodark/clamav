@@ -12,7 +12,10 @@ wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x sc
 ### For Anti Virus need to install :
 
 Manjaro / Arch Linux
-`sudo pacman -S clamav`
+```
+sudo pacman -S clamav
+systemctl enable clamav-daemon
+```
 
 Ubuntu / Debian
 `sudo apt install clamav-daemon`
@@ -68,6 +71,21 @@ systemctl start clamav-unofficial-sigs.service
 
 `nano /etc/clamav-unofficial-sigs/user.conf`
 
+### Install transmission :
 
+`sudo pacman -S transmission-cli`
+
+### Edit Options Transmission :
+
+`nano /var/lib/transmission/.config/transmission-daemon/settings.json`
+
+systemctl enable transmission
+systemctl start transmission
 chown -R transmission: /home/torrents
 chmod -R 775 /home/torrents/
+
+### Install ufw :
+
+`pacman -S ufw`
+
+`ufw allow 22/tcp && ufw allow 9091/tcp`
