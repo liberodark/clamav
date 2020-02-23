@@ -79,10 +79,12 @@ systemctl start clamav-unofficial-sigs.service
 
 `nano /var/lib/transmission/.config/transmission-daemon/settings.json`
 
+```
 systemctl enable transmission
 systemctl start transmission
 chown -R transmission: /home/torrents
 chmod -R 775 /home/torrents/
+```
 
 ### Install ufw :
 
