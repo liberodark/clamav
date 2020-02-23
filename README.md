@@ -6,7 +6,6 @@ Clamav Script Scan and Send Email for infected files
 wget -Nnv https://github.com/liberodark/clamav/raw/master/scan.sh && chmod +x scan.sh
 ```
 
-
 # How to Work : 
 
 ### For Anti Virus need to install :
@@ -71,6 +70,16 @@ systemctl start clamav-unofficial-sigs.service
 
 `nano /etc/clamav-unofficial-sigs/user.conf`
 
+# For use torrents scan :
+
+
+### Install ufw :
+
+`pacman -S ufw`
+
+`ufw allow 22/tcp && ufw allow 9091/tcp`
+
+
 ### Install transmission :
 
 `sudo pacman -S transmission-cli`
@@ -84,10 +93,4 @@ systemctl enable transmission
 systemctl start transmission
 chown -R transmission: /home/torrents
 chmod -R 775 /home/torrents/
-```
-
-### Install ufw :
-
-`pacman -S ufw`
-
-`ufw allow 22/tcp && ufw allow 9091/tcp`
+``
