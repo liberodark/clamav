@@ -53,3 +53,16 @@ password my_password
 ### Secure config file :
 
 `chmod 600 ~/.msmtprc`
+
+
+### Install clamav-unofficial-sigs :
+
+```
+wget https://github.com/liberodark/clamav/releases/download/1.0.0/clamav-unofficial-sigs-7.0.1-1-any.pkg.tar.xz
+pacman -U clamav-unofficial-sigs-7.0.1-1-any.pkg.tar.xz 
+systemctl enable clamav-unofficial-sigs.service
+systemctl start clamav-unofficial-sigs.service
+```
+
+chown -R transmission: /home/torrents
+chmod -R 775 /home/torrents/
