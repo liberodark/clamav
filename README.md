@@ -64,5 +64,10 @@ systemctl enable clamav-unofficial-sigs.service
 systemctl start clamav-unofficial-sigs.service
 ```
 
+### Edit Options clamav-unofficial-sigs :
+
+`nano /etc/clamav-unofficial-sigs/user.conf`
+
+
 chown -R transmission: /home/torrents
 chmod -R 775 /home/torrents/
