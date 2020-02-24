@@ -96,4 +96,4 @@ systemctl enable transmission
 systemctl start transmission
 chown -R transmission: /home/torrents
 chmod -R 775 /home/torrents/
-``
+```
